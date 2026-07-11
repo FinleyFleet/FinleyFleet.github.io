@@ -83,6 +83,12 @@
       overflow: hidden;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      min-width: 0;
+    }
+    .sample-info, .sample-download {
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .sample-info { padding: 2rem 2rem 2rem; border-right: 1px solid var(--rule); }
@@ -232,12 +238,37 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 680px) {
+      /* Stack sample cards vertically */
       .sample-card { grid-template-columns: 1fr; }
       .sample-info { border-right: none; border-bottom: 1px solid var(--rule); }
+
+      /* Fix text overflow in how-to lists and challenge boxes */
+      .how-to-use ol li,
+      .what-it-does ul li,
+      .challenge-box,
+      .sample-info p,
+      .sample-info .tagline {
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+
+      /* Tighten how-to list indent on mobile */
+      .how-to-use ol li { padding-left: 1.6rem; }
+      .how-to-use ol li::before { width: 1.1rem; height: 1.1rem; font-size: .6rem; }
+
+      /* File meta — allow wrap on very small screens */
+      .file-meta { flex-wrap: wrap; white-space: normal; justify-content: center; gap: .3rem; }
+
+      /* Download button full width */
+      .download-btn { width: 100%; box-sizing: border-box; }
+
+      /* Section padding */
+      section { padding: 2rem 1rem; }
+
+      /* Nav */
       nav ul { display: none; }
       nav ul.open { display: flex; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: #1a3a5c; padding: 1rem 1.5rem; gap: 1rem; z-index: 200; }
       .nav-hamburger { display: flex !important; }
-      section { padding: 2.5rem 1.25rem; }
     }
   </style>
 </head>

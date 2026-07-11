@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Samples — Finley Fleet</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #264d7a;
+      --smoke:  #f5f4f0;
+      --paper:  #ffffff;
+      --rule:   #d8d5cc;
+      --blue:   #6bbfff;
+      --ink:    #1a1a1a;
+      --mono:   'JetBrains Mono', monospace;
+      --serif:  'DM Serif Display', serif;
+      --sans:   'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--smoke); color: var(--ink); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      color: #f5f4f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { font-family: var(--mono); font-size: .85rem; letter-spacing: .04em; color: #f5f4f0; text-decoration: none; }
+    .nav-brand span { color: var(--blue); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: #aaa; text-decoration: none; font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; transition: color .2s; }
+    nav ul a:hover, nav ul a.active { color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: #ccc; border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      -webkit-print-color-adjust: exact;
+      color: #f5f4f0;
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.03) 39px, rgba(255,255,255,.03) 40px);
+      pointer-events: none;
+    }
+    .hero-eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; max-width: 680px; margin: 0 auto 1rem; }
+    .hero h1 em { font-style: italic; color: var(--blue); }
+    .hero p { font-size: 1rem; color: #bbb; max-width: 520px; margin: 0 auto; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1000px; margin: 0 auto; }
+    section { padding: 3.5rem 2rem; }
+
+    /* ── SECTION LABEL ── */
+    .section-label { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: .5rem; }
+
+    /* ── SAMPLE CARD ── */
+    .samples-grid { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 2rem; }
+
+    .sample-card {
+      background: var(--paper);
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .sample-info { padding: 2rem 2rem 2rem; border-right: 1px solid var(--rule); }
+
+    .sample-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .68rem;
+      background: #eef4fa;
+      border: 1px solid #b0cce0;
+      color: var(--navy);
+      padding: .2rem .6rem;
+      border-radius: 20px;
+      margin-bottom: .75rem;
+    }
+
+    .sample-info h2 { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); margin-bottom: .6rem; line-height: 1.2; }
+    .sample-info .tagline { font-size: .95rem; color: #555; margin-bottom: 1.25rem; line-height: 1.6; }
+
+    .what-it-does { margin-bottom: 1.5rem; }
+    .what-it-does h3 { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: .6rem; }
+    .what-it-does ul { list-style: none; padding: 0; }
+    .what-it-does ul li {
+      font-size: .88rem;
+      color: #444;
+      padding: .3rem 0 .3rem 1.1rem;
+      position: relative;
+      line-height: 1.45;
+      border-bottom: 1px solid #f0ede8;
+    }
+    .what-it-does ul li:last-child { border-bottom: none; }
+    .what-it-does ul li::before { content: '→'; position: absolute; left: 0; color: var(--navy); font-size: .8rem; }
+
+    .sample-download {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #f9f8f5;
+    }
+
+    .how-to-use h3 { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: .6rem; }
+    .how-to-use ol { list-style: none; padding: 0; counter-reset: steps; }
+    .how-to-use ol li {
+      counter-increment: steps;
+      font-size: .85rem;
+      color: #444;
+      padding: .35rem 0 .35rem 1.8rem;
+      position: relative;
+      line-height: 1.45;
+      border-bottom: 1px solid #ece9e3;
+    }
+    .how-to-use ol li:last-child { border-bottom: none; }
+    .how-to-use ol li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      width: 1.3rem;
+      height: 1.3rem;
+      background: var(--navy);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: .65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: .35rem;
+    }
+
+    .challenge-box {
+      margin-top: 1.25rem;
+      background: var(--navy);
+      -webkit-print-color-adjust: exact;
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      color: #deedf7;
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+    .challenge-box strong { color: var(--blue); display: block; margin-bottom: .3rem; font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      margin-top: 1.5rem;
+      padding: .85rem 1.5rem;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .9rem;
+      transition: background .2s;
+      text-align: center;
+    }
+    .download-btn:hover { background: #1a3a5c; }
+    .download-btn .icon { font-size: 1.1rem; }
+
+    .file-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: .75rem;
+    }
+    .file-meta span {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: #888;
+      letter-spacing: .05em;
+    }
+    .file-meta .dot { color: #ccc; }
+
+    /* ── MORE COMING ── */
+    .coming-soon {
+      background: var(--paper);
+      border: 2px dashed var(--rule);
+      border-radius: 8px;
+      padding: 2.5rem;
+      text-align: center;
+      color: #aaa;
+    }
+    .coming-soon h3 { font-family: var(--serif); font-size: 1.2rem; color: #bbb; margin-bottom: .5rem; }
+    .coming-soon p { font-size: .88rem; line-height: 1.6; }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--navy);
+      -webkit-print-color-adjust: exact;
+      color: #f5f4f0;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .cta-strip h2 { font-family: var(--serif); font-size: 1.8rem; margin-bottom: .6rem; }
+    .cta-strip p { color: #aaa; font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-primary { display: inline-block; padding: .75rem 1.75rem; border-radius: 4px; font-weight: 600; font-size: .9rem; text-decoration: none; background: var(--blue); color: var(--navy); transition: opacity .2s; }
+    .btn-primary:hover { opacity: .85; }
+
+    /* ── FOOTER ── */
+    footer { background: #0f2440; color: #555; text-align: center; padding: 1.25rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .sample-card { grid-template-columns: 1fr; }
+      .sample-info { border-right: none; border-bottom: 1px solid var(--rule); }
+      nav ul { display: none; }
+      nav ul.open { display: flex; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: #1a3a5c; padding: 1rem 1.5rem; gap: 1rem; z-index: 200; }
+      .nav-hamburger { display: flex !important; }
+      section { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">Finley<span>Fleet</span></a>
+    <ul id="navLinks">
+      <li><a href="index.html#problems">Problems</a></li>
+      <li><a href="index.html#deliverables">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="samples.html" class="active">Free Samples</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-eyebrow">Free Samples — Download &amp; Try</p>
+    <h1>See the work <em>before</em> you commit to anything.</h1>
+    <p>Download real working files, try them out, and see firsthand what a properly built tool can do for your operation.</p>
+  </header>
+
+  <!-- SAMPLES -->
+  <section>
+    <div class="container">
+      <p class="section-label">Available Downloads</p>
+
+      <!-- .xlsm notice -->
+      <div style="background:#fff8e6; border:1px solid #f0d080; border-left:4px solid #e0a800; border-radius:6px; padding:1rem 1.25rem; margin-bottom:2rem; display:flex; gap:.75rem; align-items:flex-start;">
+        <span style="font-size:1.2rem; flex-shrink:0;">⚠️</span>
+        <div>
+          <strong style="font-size:.88rem; display:block; margin-bottom:.25rem;">These files require the Microsoft Excel desktop app</strong>
+          <p style="font-size:.82rem; color:#666; line-height:1.5;">All macro-enabled files use the <strong>.xlsm</strong> format. They will not run in Excel Online, Google Sheets, or a web browser. Download the file and open it directly in the <strong>Excel desktop application</strong> (Windows or Mac). When prompted, click <strong>Enable Macros</strong> — this is required for the automation to work.</p>
+        </div>
+      </div>
+
+      <div class="samples-grid">
+
+        <!-- ── SAMPLE 1: Inventory Tracker ── -->
+        <div class="sample-card">
+          <div class="sample-info">
+            <span class="sample-tag">Excel · VBA · Multi-Sheet</span>
+            <h2>Multi-User Inventory Tracker</h2>
+            <p class="tagline">Need to track inventory with multiple people making adjustments at once? Stop relying on sticky notes, shared spreadsheets that overwrite each other, or manual counts that are already wrong by the time you finish. This tracker logs every move — who did it, when, and where it went — automatically.</p>
+
+            <div class="what-it-does">
+              <h3>What This File Does</h3>
+              <ul>
+                <li>Tracks inventory items by ID, description, quantity, and physical bin location</li>
+                <li>Supports ADD, SUBTRACT, and BIN-TO-BIN movements from a single entry form</li>
+                <li>Automatically stamps every transaction with the date, time, and user name</li>
+                <li>Maintains a permanent History Log — nothing gets deleted or overwritten</li>
+                <li>Dropdown-driven data entry reduces typos and keeps records consistent</li>
+                <li>Password protected to prevent accidental changes to structure or formulas</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sample-download">
+            <div>
+              <div class="how-to-use">
+                <h3>How to Use It</h3>
+                <ol>
+                  <li>Open in Excel desktop app and click <strong>Enable Macros</strong> when prompted</li>
+                  <li>Go to the <strong>Transactions</strong> tab and fill in the movement fields</li>
+                  <li>Select a Movement Type from the dropdown (Add, Subtract, Bin to Bin)</li>
+                  <li>Click the action button — the macro processes and records the entry</li>
+                  <li>Check <strong>History Log</strong> to see the timestamped record</li>
+                  <li>View <strong>Main Inventory</strong> to see updated quantities in real time</li>
+                </ol>
+              </div>
+              <div class="challenge-box">
+                <strong>🧪 The Challenge</strong>
+                Try to break it. Enter bad data, skip fields, click buttons out of order. It's built to handle real-world use — including the mistakes. See how it responds, and imagine what that reliability could mean for your team.
+              </div>
+            </div>
+            <div>
+              <a href="Simple_Inventory_Tracker.xlsm" download class="download-btn">
+                <span class="icon">⬇️</span> Download Free Sample
+              </a>
+              <div class="file-meta">
+                <span>Excel Macro-Enabled</span>
+                <span class="dot">·</span>
+                <span>.xlsm</span>
+                <span class="dot">·</span>
+                <span>Desktop Excel Required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SAMPLE 2: BOM Filter ── -->
+        <div class="sample-card">
+          <div class="sample-info">
+            <span class="sample-tag">Excel · VBA · Bill of Materials</span>
+            <h2>Bill of Materials Filter</h2>
+            <p class="tagline">Ever needed to know which finished products contain a specific component — or pull every part in a kit instantly? This tool works both ways. Type a part number and see every product it belongs to. Type a product and see every component inside it. Search multiple items at once using a simple comma-separated entry.</p>
+
+            <div class="what-it-does">
+              <h3>What This File Does</h3>
+              <ul>
+                <li>Instantly filters a Bill of Materials by Part Number, Set ID, or Project Name</li>
+                <li>Works bidirectionally — search by component to find kits, or by kit to find components</li>
+                <li>Supports partial matches — no need to type exact IDs</li>
+                <li>Multi-item search using comma separation (e.g. "PLR-0040,WRN-0030")</li>
+                <li>Displays quantity per set, In Set Flag, Critical Flag, and list price per result</li>
+                <li>BoM data lives on a separate sheet — easy to update without touching the filter logic</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sample-download">
+            <div>
+              <div class="how-to-use">
+                <h3>How to Use It</h3>
+                <ol>
+                  <li>Open in Excel desktop app and click <strong>Enable Macros</strong> when prompted</li>
+                  <li>Go to the <strong>BoM Filter</strong> tab</li>
+                  <li>Type a value into a filter cell — use a real Part Number or Set ID from the <strong>BoM</strong> tab as your starting point</li>
+                  <li>Click the Search button — results will populate based on your entry</li>
+                  <li>To search multiple items at once, separate values with a comma and no space (e.g. <em>PLR-0040,WRN-0030</em>)</li>
+                  <li>Clear all filter fields to reset and start a new search</li>
+                </ol>
+              </div>
+              <div class="challenge-box">
+                <strong>🧪 Try This</strong>
+                Type <em>SFY-0141</em> in the Part Number field — it appears in 14 different kits. Then clear it and type <em>KIT-500</em> in the Set ID field to see every one of its 32 components. Finally, try searching <em>PLR-0040,WRN-0034</em> at once to find every kit that contains both parts.
+              </div>
+            </div>
+            <div>
+              <a href="bom-filter-sample.xlsm" download class="download-btn">
+                <span class="icon">⬇️</span> Download Free Sample
+              </a>
+              <div class="file-meta">
+                <span>Excel Macro-Enabled</span>
+                <span class="dot">·</span>
+                <span>.xlsm</span>
+                <span class="dot">·</span>
+                <span>Desktop Excel Required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── MORE COMING SOON ── -->
+        <div class="coming-soon">
+          <h3>More samples coming soon</h3>
+          <p>Additional examples — including report generators, work instruction templates, and automated forms — will be added here. Check back, or reach out if there's a specific type of tool you'd like to see.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <h2>Want something built for your operation?</h2>
+    <p>The conversation is always free. Let's talk about what you need.</p>
+    <a href="index.html#contact" class="btn-primary">Get in Touch</a>
+  </div>
+
+  <footer>
+    © 2026 Finley Fleet · Small Business Tech Consulting · Coldwater, MS
+  </footer>
+
+  <script>
+    var hamburger = document.getElementById('hamburger');
+    var navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('open');
+      });
+      navLinks.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+      });
+      document.addEventListener('click', function(e) {
+        if (!document.querySelector('nav').contains(e.target)) {
+          navLinks.classList.remove('open');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
